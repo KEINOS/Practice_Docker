@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+NAME_IMAGE='tooter'
+URL_ENDPOINT='https://qiitadon.com/api/v1/statuses'
+TOOT_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+TOOT_STATUS=${1:-'Hello%20World'}
+TOOT_VISIBILITY='private'
+
+# Create disposable container and run 
+docker run --rm -it \
+  -e ENDPOINT="${URL_ENDPOINT}" \
+  -e STATUS="${TOOT_STATUS}" \
+  -e VISIBILITY="${TOOT_VISIBILITY}" \
+  -e ACCESS_TOKEN="${TOOT_TOKEN}" \
+  $NAME_IMAGE
+
+exit $?
+
