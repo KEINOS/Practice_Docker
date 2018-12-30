@@ -1,12 +1,18 @@
-# Toots to Mastodon
+# Docker image for tooting Mastodon
+
+- Guest OS
+    - `alpine:3.8`
+- 必須環境変数
+    - `ACCESS_TOKEN`
+    - `ENDPOINT`
+    - `STATUS`
+    - `VISIBILITY`
+
+## 用途
 
 この Dockerfile は Mastodon にトゥートするだけのシンプルな Docker イメージを作成します。
 
-## ベースイメージ
-
-- alpine:3.8
-
-## Docker イメージのビルド
+## Docker イメージの作り方（ビルド）
 
 ```shellsession
 $ ls

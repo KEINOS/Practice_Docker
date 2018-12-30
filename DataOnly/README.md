@@ -1,16 +1,17 @@
-# Docker image for Data containers
+# Docker image for data containers
 
-データ専用のコンテナを作るための Docker image を作成します。
-
-- Guest OS: busybox:latest
-- 共有ディレクトリ： `/data`
-- サンプルデータ： `/data/data_sample1.txt`
+- Guest OS
+    - `busybox:latest`
+- 共有ディレクトリ
+    - `/data`
+- サンプルデータ
+    - `/data/data_sample1.txt`
 
 ## 用途
 
-同一 Host OS 内の**コンテナ間でデータを共有するためのデータ・コンテナ**です。
+同一 Host OS 内の**コンテナ間でデータを共有するためのデータ・コンテナ**を作るためのシンプルな Docker イメージを作成します。
 
-## イメージの作り方
+## Docker イメージの作り方（ビルド）
 
 ```
 docker build -t data-only ./
@@ -32,13 +33,15 @@ $ # Docker イメージを 'image-data-only' のイメージ名で作成
 $ docker build -t image-data-only ./
 ```
 
-## コンテナの作成
+## 使い方
+
+### コンテナの作成
 
 「image-data-only」の Docker イメージから、コンテナ名「dat0001」でコンテナを作成。
 
 今後は、このコンテナ「dat0001」にデータ・コンテナとして、他のコンテナからアクセスします。
 
-```
+```shellsession
 $ docker run --name dat0001 image-data-only
 $ 
 $ # 起動中のコンテナがないことを確認
@@ -52,7 +55,7 @@ e68xxxxxxxxx        image-data-only     "sh"                20 minutes ago      
 ```
 
 
-## 他のコンテナからの接続例
+### 他のコンテナからの接続例
 
 以下は、別のコンテナから上記で作成したデータ・コンテナ「dat0001」をマウントする例で、以下の作業を行なっています。
 
@@ -60,7 +63,7 @@ e68xxxxxxxxx        image-data-only     "sh"                20 minutes ago      
 - サンプル・データ「data_sample2.txt」を作成
 - コンテナの停止
 
-```
+```shellsession
 $ docker run --rm -it --volumes-from dat0001 alpine
 / # 
 / # ls /data
@@ -79,7 +82,7 @@ Hello data container from other container
 
 上記のテストデータ「data_sample2.txt」が保存されているか、再度別のコンテナから接続して確認する例です。
 
-```
+```shellsession
 $ docker run --rm -it --volumes-from dat0001 alpine
 / # 
 / # ls /data
