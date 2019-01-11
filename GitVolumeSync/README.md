@@ -37,7 +37,7 @@ Kubernetes の [gitRepo Volume](http://kubernetes.io/docs/user-guide/volumes/#gi
 
 ## Tipical usage from other container
 
-```
+```shellsession
 $ # Run monitoring container
 $ ./runner.sh
 - Checking existing container running ... OK
