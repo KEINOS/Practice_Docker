@@ -1,0 +1,17 @@
+## .gitignore ##
+# ignore all
+*
+
+# allow any
+!*/
+!ENV.list.sample
+!README.md
+!Dockerfile
+!Build.sh
+!runner.sh
+!.gitignore
+!resource/setup.sh
+!resource/entrypoint.sh
+
+
+
