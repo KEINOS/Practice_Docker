@@ -2,19 +2,23 @@
 
 A Dockerfile which automaticaly clone, commit and push origin to a mounted volume.
 
-この Dockerfile は、マウントしたボリュームに GitHub のリポジトリを `git clone` 後、そのマウントしたボリュームに変更があると、自動的にコミットとプッシュを行い GitHub のリポジトリに反映するコンテナが作れます。
+この Dockerfile は、**ボリュームを監視して GitHub との同期を行うコンテナ**が作れます。このコンテナにボリュームをマウントすると、GitHub のリポジトリを `git clone` 後、ボリューム内に変更があると自動的にコミットとプッシュを行い GitHub のリポジトリに反映します。
+
+## 主な用途
+
+その他のコンテナで、同じボリュームをマウントしてデータを変更すると自動的に GitHub のリポジトリに反映します。
 
 Kubernetes の [gitRepo Volume](http://kubernetes.io/docs/user-guide/volumes/#gitrepo) や [git-sync](https://github.com/kubernetes/git-sync) が大げさで、もっと小さい規模で使いたいと思い、勉強がてら作ってみました。安定したら、専用のリポジトリで公開したいと思います。
 
 ## Easy usage
 
-`ENV.list.sample` を `ENV.list` にリネームして、"User edit" 内の項目を変更後、`runner.sh` を実行します。
+`ENV.list.sample` を `ENV.list` にリネームして、"User edit" 内の項目を変更後、`runner.sh` を実行します。あとは、自分の作業用コンテナに `data_git` をマウントして、マウントしたディレクトリ内で変更があると自動的に GitHub に同期します。
 
 1. Edit the "[/ENV.list.sample](ENV.list.sample)" file and rename it to "ENV.list"
 2. Move the current directory to this repo. (`$ cd /path/to/GitVolumeSync`)
 3. Run `runner.sh`. (`$ /bin/bash ./runner.sh`)
 4. After the monitoring container is ran, mount the "data_git" volume on to your container.
-    - EX: `docker run --rm -it -v data_git:/data alpine /bin/sh`
+    - Ex: `docker run --rm -it -v data_git:/data alpine /bin/sh`
     - All the changes in "/data" directory will reflect to origin(GitHub)
 
 ## Repository Details
