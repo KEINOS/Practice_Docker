@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app_php:
+    build: ./App1_PHP
+    image: app_php
+    container_name: app_php
+
+  app_py:
+    build: ./App2_Py
+    image: app_py
+    container_name: app_py
+
+  client:
+    image: alpine
+    container_name: client
+
