@@ -2,7 +2,7 @@
 FROM alpine:3.8
 
 # Dockerfile version
-VAR VER 0.0.1-20181230-2044
+ARG VER='0.0.1-20190107-2103'
 
 # Feature cURL
 RUN apk update && apk add curl
