@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+    data_mc:
+
+services:
+    mcsrv:
+        container_name: mcsrv
+        image: itzg/minecraft-server
+        ports:
+            - '25565:25565'
+        tty: true
+        volumes:
+            - data_mc:/data
+        environment:
+            EULA: 'TRUE'
