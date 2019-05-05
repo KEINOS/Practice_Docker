@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  data_portainer:
+
+services:
+  docker_ui:
+    image: portainer/portainer
+    ports:
+      - "5963:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "data_portainer:/data portainer/portainer"
+    container_name: docker_ui
+
+
